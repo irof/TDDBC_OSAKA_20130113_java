@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+repositories.mavenCentral()
+dependencies.testCompile 'junit:junit:4.11'
+
+def version = '1.7'
+sourceCompatibility = version
+targetCompatibility = version
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+
