@@ -13,4 +13,12 @@ public class VendingMachineTest {
         int actual = sut.getCreditAmount();
         assertThat(actual, is(0));
     }
+
+    @Test
+    public void 投入後は投入金額が取得できる() {
+        VendingMachine sut = new VendingMachine();
+        sut.insert(100);
+        int actual = sut.getCreditAmount();
+        assertThat(actual, is(100));
+    }
 }

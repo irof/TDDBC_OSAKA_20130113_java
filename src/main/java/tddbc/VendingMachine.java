@@ -6,4 +6,7 @@ public class VendingMachine {
     public int getCreditAmount() {
         return creditAmount;
     }
+
+    public void insert(int insertAmount) {
+    }
 }
