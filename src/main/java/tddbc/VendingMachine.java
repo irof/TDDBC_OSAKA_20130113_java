@@ -23,6 +23,6 @@ public class VendingMachine {
     }
 
     public void purchase() {
-        number--;
+        if (creditAmount >= 120) number--;
     }
 }
