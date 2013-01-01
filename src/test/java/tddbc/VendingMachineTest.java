@@ -81,6 +81,12 @@ public class VendingMachineTest {
         public void お釣り金額が取得できる() {
             assertThat(sut.getChangeAmount(), is(0));
         }
+
+        @Test
+        public void 払い戻すと投入金額がお釣りになる() {
+            sut.payback();
+            assertThat(sut.getChangeAmount(), is(1000));
+        }
     }
 
     @RunWith(Theories.class)

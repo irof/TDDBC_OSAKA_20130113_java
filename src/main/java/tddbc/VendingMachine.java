@@ -34,4 +34,7 @@ public class VendingMachine {
     public int getChangeAmount() {
         return changeAmount;
     }
+
+    public void payback() {
+    }
 }
