@@ -45,24 +45,22 @@ public class VendingMachineTest {
         @Before
         public void setUp() {
             sut = new VendingMachine();
+            sut.insert(1000);
         }
 
         @Test
         public void 投入後は投入金額が取得できる() {
-            sut.insert(100);
-            assertThat(sut.getCreditAmount(), is(100));
+            assertThat(sut.getCreditAmount(), is(1000));
         }
 
         @Test
         public void 複数回投入して投入金額を取得() {
             sut.insert(100);
-            sut.insert(100);
-            assertThat(sut.getCreditAmount(), is(200));
+            assertThat(sut.getCreditAmount(), is(1100));
         }
 
         @Test
         public void 十分なお金を投入して購入すると在庫が減る() {
-            sut.insert(1000);
             sut.purchase();
             assertThat(sut.getStockText(), is("コーラ:120円:4本"));
         }
