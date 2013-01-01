@@ -87,6 +87,13 @@ public class VendingMachineTest {
             sut.payback();
             assertThat(sut.getChangeAmount(), is(1000));
         }
+
+        @Test
+        public void 二回払い戻してもお釣りは増えない() {
+            sut.payback();
+            sut.payback();
+            assertThat(sut.getChangeAmount(), is(1000));
+        }
     }
 
     @RunWith(Theories.class)
