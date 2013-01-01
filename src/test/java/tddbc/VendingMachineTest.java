@@ -94,6 +94,12 @@ public class VendingMachineTest {
             sut.payback();
             assertThat(sut.getChangeAmount(), is(1000));
         }
+
+        @Test
+        public void 払い戻すと預かり金額が0円になる() {
+            sut.payback();
+            assertThat(sut.getCreditAmount(), is(0));
+        }
     }
 
     @RunWith(Theories.class)
