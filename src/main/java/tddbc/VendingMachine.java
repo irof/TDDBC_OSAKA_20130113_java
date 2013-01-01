@@ -20,4 +20,7 @@ public class VendingMachine {
     public String getStockText() {
         return "コーラ:120円:5本";
     }
+
+    public void purchase() {
+    }
 }
