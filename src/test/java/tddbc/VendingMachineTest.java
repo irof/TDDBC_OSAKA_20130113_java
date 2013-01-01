@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(Enclosed.class)
 public class VendingMachineTest {
 
-    public static class SimpleOperation {
+    public static class お金が投入されていない状態 {
         private VendingMachine sut;
 
         @Before
@@ -25,6 +25,26 @@ public class VendingMachineTest {
         @Test
         public void 投入前に投入金額を取得したら0円() {
             assertThat(sut.getCreditAmount(), is(0));
+        }
+
+        @Test
+        public void 在庫情報を取得できる() {
+            assertThat(sut.getStockText(), is("コーラ:120円:5本"));
+        }
+
+        @Test
+        public void お金が足りないと購入しても在庫は減らない() {
+            sut.purchase();
+            assertThat(sut.getStockText(), is("コーラ:120円:5本"));
+        }
+    }
+
+    public static class お金が投入されている状態 {
+        private VendingMachine sut;
+
+        @Before
+        public void setUp() {
+            sut = new VendingMachine();
         }
 
         @Test
@@ -41,24 +61,11 @@ public class VendingMachineTest {
         }
 
         @Test
-        public void 在庫情報を取得できる() {
-            String actual = sut.getStockText();
-            assertThat(actual, is("コーラ:120円:5本"));
-        }
-
-        @Test
         public void 十分なお金を投入して購入すると在庫が減る() {
             sut.insert(1000);
             sut.purchase();
             assertThat(sut.getStockText(), is("コーラ:120円:4本"));
         }
-
-        @Test
-        public void お金が足りないと購入しても在庫は減らない() {
-            sut.purchase();
-            assertThat(sut.getStockText(), is("コーラ:120円:5本"));
-        }
-
     }
 
     @RunWith(Theories.class)
