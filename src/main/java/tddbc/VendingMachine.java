@@ -4,6 +4,7 @@ public class VendingMachine {
     private static final int[] ALLOW_MONEYS = {10, 50, 100, 500, 1000};
 
     private int creditAmount;
+    private int number = 5;
 
     public int getCreditAmount() {
         return creditAmount;
@@ -18,9 +19,10 @@ public class VendingMachine {
     }
 
     public String getStockText() {
-        return "コーラ:120円:5本";
+        return String.format("コーラ:120円:%d本", number);
     }
 
     public void purchase() {
+        number--;
     }
 }
