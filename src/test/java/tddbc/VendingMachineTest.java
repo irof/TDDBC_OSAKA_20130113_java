@@ -76,6 +76,11 @@ public class VendingMachineTest {
             sut.purchase();
             assertThat(sut.getCreditAmount(), is(880));
         }
+
+        @Test
+        public void お釣り金額が取得できる() {
+            assertThat(sut.getChangeAmount(), is(0));
+        }
     }
 
     @RunWith(Theories.class)

@@ -6,6 +6,7 @@ public class VendingMachine {
 
     private int creditAmount;
     private int number = 5;
+    private int changeAmount;
 
     public int getCreditAmount() {
         return creditAmount;
@@ -28,5 +29,9 @@ public class VendingMachine {
             number--;
             creditAmount -= PRICE;
         }
+    }
+
+    public int getChangeAmount() {
+        return changeAmount;
     }
 }
