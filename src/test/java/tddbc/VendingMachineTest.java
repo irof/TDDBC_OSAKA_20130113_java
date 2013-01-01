@@ -39,29 +39,28 @@ public class VendingMachineTest {
             sut.insert(100);
             assertThat(sut.getCreditAmount(), is(200));
         }
-
-        @Test
-        public void 無効なお金は受け付けない() {
-            sut.insert(5);
-            assertThat(sut.getCreditAmount(), is(0));
-        }
     }
 
     @RunWith(Theories.class)
     public static class InsertMoneys {
+        VendingMachine sut;
+
+        @Before
+        public void setUp() {
+            sut = new VendingMachine();
+            sut.insert(100);
+        }
 
         @Theory
         public void 扱えるお金を投入したらその金額(@TestedOn(ints = {10, 50, 100, 500, 1000}) int amount) {
-            VendingMachine sut = new VendingMachine();
             sut.insert(amount);
-            assertThat(sut.getCreditAmount(), is(amount));
+            assertThat(sut.getCreditAmount(), is(100 + amount));
         }
 
         @Theory
         public void 扱えないお金を投入したら0円(@TestedOn(ints = {1, 5, 2000, 5000, 10000}) int amount) {
-            VendingMachine sut = new VendingMachine();
             sut.insert(amount);
-            assertThat(sut.getCreditAmount(), is(0));
+            assertThat(sut.getCreditAmount(), is(100));
         }
     }
 }
