@@ -36,7 +36,7 @@ public class VendingMachine {
     }
 
     public void payback() {
-        changeAmount = creditAmount;
+        changeAmount += creditAmount;
         creditAmount = 0;
     }
 }
