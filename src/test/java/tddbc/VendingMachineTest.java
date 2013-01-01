@@ -32,4 +32,10 @@ public class VendingMachineTest {
         sut.insert(100);
         assertThat(sut.getCreditAmount(), is(200));
     }
+
+    @Test
+    public void 無効なお金は受け付けない() {
+        sut.insert(5);
+        assertThat(sut.getCreditAmount(), is(0));
+    }
 }
