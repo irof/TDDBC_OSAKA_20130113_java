@@ -39,6 +39,12 @@ public class VendingMachineTest {
             sut.insert(100);
             assertThat(sut.getCreditAmount(), is(200));
         }
+
+        @Test
+        public void 在庫情報を取得できる() {
+            String actual = sut.getStockText();
+            assertThat(actual, is("コーラ:120円:5本"));
+        }
     }
 
     @RunWith(Theories.class)

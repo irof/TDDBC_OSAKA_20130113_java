@@ -16,4 +16,8 @@ public class VendingMachine {
             }
         }
     }
+
+    public String getStockText() {
+        return null;
+    }
 }
