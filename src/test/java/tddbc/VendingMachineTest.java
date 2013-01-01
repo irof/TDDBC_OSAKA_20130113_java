@@ -78,7 +78,7 @@ public class VendingMachineTest {
         }
 
         @Test
-        public void お釣り金額が取得できる() {
+        public void 払い戻していないときのお釣りは0円() {
             assertThat(sut.getChangeAmount(), is(0));
         }
 
@@ -89,7 +89,7 @@ public class VendingMachineTest {
         }
 
         @Test
-        public void 二回払い戻してもお釣りは増えない() {
+        public void 二回連続で払い戻してもお釣りは増えない() {
             sut.payback();
             sut.payback();
             assertThat(sut.getChangeAmount(), is(1000));
@@ -103,8 +103,8 @@ public class VendingMachineTest {
     }
 
     @RunWith(Theories.class)
-    public static class InsertMoneys {
-        VendingMachine sut;
+    public static class 金種による扱い {
+        private VendingMachine sut;
 
         @Before
         public void setUp() {
@@ -113,13 +113,13 @@ public class VendingMachineTest {
         }
 
         @Theory
-        public void 扱えるお金を投入したらその金額(@TestedOn(ints = {10, 50, 100, 500, 1000}) int amount) {
+        public void 扱えるお金を投入_投入金額は増える(@TestedOn(ints = {10, 50, 100, 500, 1000}) int amount) {
             sut.insert(amount);
             assertThat(sut.getCreditAmount(), is(100 + amount));
         }
 
         @Theory
-        public void 扱えないお金を投入したら0円(@TestedOn(ints = {1, 5, 2000, 5000, 10000}) int amount) {
+        public void 扱えないお金を投入_投入金額は変わらない(@TestedOn(ints = {1, 5, 2000, 5000, 10000}) int amount) {
             sut.insert(amount);
             assertThat(sut.getCreditAmount(), is(100));
         }
