@@ -51,10 +51,17 @@ public class VendingMachineTest {
     public static class InsertMoneys {
 
         @Theory
-        public void 扱えるお金(@TestedOn(ints = {10, 50, 100, 500, 1000}) int amount) {
+        public void 扱えるお金を投入したらその金額(@TestedOn(ints = {10, 50, 100, 500, 1000}) int amount) {
             VendingMachine sut = new VendingMachine();
             sut.insert(amount);
             assertThat(sut.getCreditAmount(), is(amount));
+        }
+
+        @Theory
+        public void 扱えないお金を投入したら0円(@TestedOn(ints = {1, 5, 2000, 5000, 10000}) int amount) {
+            VendingMachine sut = new VendingMachine();
+            sut.insert(amount);
+            assertThat(sut.getCreditAmount(), is(0));
         }
     }
 }
