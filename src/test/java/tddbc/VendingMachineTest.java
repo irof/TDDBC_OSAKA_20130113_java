@@ -25,4 +25,11 @@ public class VendingMachineTest {
         sut.insert(100);
         assertThat(sut.getCreditAmount(), is(100));
     }
+
+    @Test
+    public void 複数回投入して投入金額を取得() {
+        sut.insert(100);
+        sut.insert(100);
+        assertThat(sut.getCreditAmount(), is(200));
+    }
 }
