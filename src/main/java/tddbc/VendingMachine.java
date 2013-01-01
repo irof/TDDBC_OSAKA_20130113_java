@@ -8,6 +8,9 @@ public class VendingMachine {
     }
 
     public void insert(int insertAmount) {
+        if (insertAmount == 5) {
+            return;
+        }
         creditAmount += insertAmount;
     }
 }
