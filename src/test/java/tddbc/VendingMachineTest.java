@@ -64,6 +64,12 @@ public class VendingMachineTest {
             sut.purchase();
             assertThat(sut.getStockText(), is("コーラ:120円:4本"));
         }
+
+        @Test
+        public void 購入すると投入金額が減る() {
+            sut.purchase();
+            assertThat(sut.getCreditAmount(), is(880));
+        }
     }
 
     @RunWith(Theories.class)
