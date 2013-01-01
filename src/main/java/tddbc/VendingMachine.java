@@ -1,6 +1,8 @@
 package tddbc;
 
 public class VendingMachine {
+    private static final int[] ALLOW_MONEYS = {10, 50, 100, 500, 1000};
+
     private int creditAmount;
 
     public int getCreditAmount() {
@@ -8,9 +10,10 @@ public class VendingMachine {
     }
 
     public void insert(int insertAmount) {
-        if (insertAmount == 5) {
-            return;
+        for (int allowMoney : ALLOW_MONEYS) {
+            if (allowMoney == insertAmount) {
+                creditAmount += insertAmount;
+            }
         }
-        creditAmount += insertAmount;
     }
 }
